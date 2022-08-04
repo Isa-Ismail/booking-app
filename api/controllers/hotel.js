@@ -9,6 +9,15 @@ export const getAllHotel = async(req, res, next) => {
       }
 }
 
+export const getHotelByID = async(req, res, next) => {
+  try {
+      const hotel = await Hotel.findById(req.params.id)
+      res.json(hotel)
+    } catch (err) {
+      next(err)
+    }
+}
+
 export const createHotel = async(req, res, next) => {
     const hotel = new Hotel(req.body)
     try {

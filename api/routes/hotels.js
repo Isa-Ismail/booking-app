@@ -1,10 +1,11 @@
 import epxress from 'express'
-import Hotel from '../models/Hotel.js'
-import { getAllHotel, createHotel, updateHotel, deleteHotel } from '../controllers/hotel.js'
+import { getAllHotel, getHotelByID, createHotel, updateHotel, deleteHotel } from '../controllers/hotel.js'
 
 const router = epxress.Router()
 
 router.get('/', getAllHotel)
+
+router.get('/:id', getHotelByID)
 
 router.post('/', createHotel)
 
