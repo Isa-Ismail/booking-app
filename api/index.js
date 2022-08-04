@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import Hotel from './models/Hotel.js'
 import dotenv from 'dotenv'
+import hotelRoute from './routes/hotels.js'
 
 const app = express()
 dotenv.config()
@@ -16,14 +16,19 @@ try {
 
 //middleware
 app.use(express.json())
-app.post('/', async(req, res)=>{
-  const hotel = new Hotel(req.body)
-  try {
-    const savedHotel = await hotel.save()
-    res.json(savedHotel)
-  } catch (error) {
-    console.log(error)
-  }
+
+app.use('/api/hotels', hotelRoute)
+
+app.use((err, req, res, next) => {
+  const errorStatus = err.status || 500
+  const errorMessage = err.message || 'something went wrong'
+
+  return res.status(errorStatus).json({
+    success: false,
+    status: errorStatus,
+    message: errorMessage,
+    stack: err.stack
+  })
 })
 
 app.listen(8000, ()=> {
