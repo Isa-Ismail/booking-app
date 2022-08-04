@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import hotelRoute from './routes/hotels.js'
+import authRoute from './routes/auth.js'
 
 const app = express()
 dotenv.config()
@@ -18,6 +19,7 @@ try {
 app.use(express.json())
 
 app.use('/api/hotels', hotelRoute)
+app.use('/api/auth', authRoute)
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500

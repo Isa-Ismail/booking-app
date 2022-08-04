@@ -1,5 +1,5 @@
 import epxress from 'express'
-import Hotel from '../models/Hotel'
+import Hotel from '../models/Hotel.js'
 
 const router = epxress.Router()
 
