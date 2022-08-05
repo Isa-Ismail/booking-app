@@ -1,5 +1,5 @@
 import epxress from 'express'
-import { register, getAllUsers, getUserById } from '../controllers/auth.js'
+import { register, getAllUsers, getUserById, login } from '../controllers/auth.js'
 
 const router = epxress.Router()
 
@@ -7,6 +7,8 @@ router.get('/', getAllUsers)
 
 router.get('/:id', getUserById)
 
-router.post('/', register)
+router.post('/register', register)
+
+router.post('/login', login)
 
 export default router

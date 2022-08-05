@@ -4,9 +4,11 @@ import dotenv from 'dotenv'
 import hotelRoute from './routes/hotels.js'
 import authRoute from './routes/auth.js'
 
+//configuring app
 const app = express()
 dotenv.config()
 
+//DB pipeline
 try {
   mongoose.connect(process.env.MONGO).then(()=>{
     console.log('mongo connected')
@@ -18,9 +20,11 @@ try {
 //middleware
 app.use(express.json())
 
+//All routes
 app.use('/api/hotels', hotelRoute)
 app.use('/api/auth', authRoute)
 
+//Error handling middleware
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500
   const errorMessage = err.message || 'something went wrong'
@@ -33,6 +37,7 @@ app.use((err, req, res, next) => {
   })
 })
 
+//Server Engine starter
 app.listen(8000, ()=> {
   console.log('back connected')
 })
