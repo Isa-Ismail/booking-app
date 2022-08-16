@@ -1,5 +1,5 @@
 import './header.css'
-import {faBed, faCalendar, faCalendarDays, faCar, faPerson, faPlane, faTaxi } from "@fortawesome/free-solid-svg-icons" 
+import {faBed, faCalendarDays, faCar, faPerson, faPlane, faTaxi } from "@fortawesome/free-solid-svg-icons" 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { DateRange } from 'react-date-range'
 import { useState } from 'react'
@@ -10,8 +10,6 @@ import { format } from 'date-fns'
 const Header = () => {
 
   const [open, setOpen] = useState(false)
-
-  const [openOption, setOpenOption] = useState(false)
 
   const [openRoom, setOpenRoom] = useState(false)
 
@@ -84,7 +82,7 @@ const Header = () => {
               <div className="optionItem">
                 <span className="optionText">Adult</span>
                 <div className="optionCounter">
-                  <button onClick={()=> setOptions({...options, adult: options.adult-1})} className="optionCounterButton">-</button>
+                  <button disabled={options.adult<=1} onClick={()=> setOptions({...options, adult: options.adult-1})} className="optionCounterButton">-</button>
                   <span className="optionCounterNumber">{options.adult}</span>
                   <button onClick={()=> setOptions({...options, adult: options.adult+1})} className="optionCounterButton">+</button>
                 </div>
@@ -92,7 +90,7 @@ const Header = () => {
               <div className="optionItem">
                 <span className="optionText">Children</span>
                 <div className="optionCounter">
-                  <button onClick={()=> setOptions({...options, children: options.children-1})} className="optionCounterButton">-</button>
+                  <button disabled={options.children<=0} onClick={()=> setOptions({...options, children: options.children-1})} className="optionCounterButton">-</button>
                   <span className="optionCounterNumber">{options.children}</span>
                   <button onClick={()=> setOptions({...options, children: options.children+1})} className="optionCounterButton">+</button>
                 </div>
@@ -100,7 +98,7 @@ const Header = () => {
               <div className="optionItem">
                 <span className="optionText">Room</span>
                 <div className="optionCounter">
-                  <button onClick={()=> setOptions({...options, room: options.room-1})} className="optionCounterButton">-</button>
+                  <button disabled={options.room<=1} onClick={()=> setOptions({...options, room: options.room-1})} className="optionCounterButton">-</button>
                   <span className="optionCounterNumber">{options.room}</span>
                   <button onClick={()=> setOptions({...options, room: options.room+1})} className="optionCounterButton">+</button>
                 </div>
