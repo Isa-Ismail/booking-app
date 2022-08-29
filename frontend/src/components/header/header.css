@@ -14,8 +14,7 @@
 
 .headerList {
     display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
+    justify-content: space-between;
 }
 
 .headerListItem {
